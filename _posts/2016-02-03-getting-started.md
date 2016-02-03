@@ -3,14 +3,8 @@ layout: post
 title: Setting up the site
 ---
 
-### Here's a sample post
+### Switching to a static site
 
-Getting started...
+Will be moving [olinbg.com](http://olinbg.com) to Tumblr shortly, using this design.
 
-Here's a code sample for highlighting:
-
-``` python
-# Here is some in python
-def foo():
-  print 'foo'
-```
+Been very happy with the setup and design of Hyde (see links on the about page.)
