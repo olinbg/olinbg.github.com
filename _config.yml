@@ -13,7 +13,7 @@ paginate_path:    "page:num"
 paginate:         5
 
 # Setup
-title:            olinbg
+title:            Olin Gay
 tagline:          'Putting it all together...'
 description:      'Find me on Twitter <a href="http://twitter.com/olinbg" target="_blank">@olinbg</a> and <a href="http://linkedin.com/in/olinbg" target="_blank">LinkedIn</a>.'
 url:              http://olinbg.github.io/
