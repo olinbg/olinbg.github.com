@@ -1,8 +1,8 @@
 # Dependencies
 markdown:         kramdown
-highlighter:      pygments
+highlighter:      rouge
 kramdown:
-  syntax_highlighter: rouge
+  input: GFM
 
 # Permalinks
 permalink:        pretty
