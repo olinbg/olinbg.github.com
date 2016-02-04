@@ -20,5 +20,4 @@ Questions / comments / feedback?  Reach out to me on [Twitter]({{ site.author.ur
 
 From a Paris trip a few years ago...
 
-![Musee_Orsay_Clock]({{ site.url }}public/images/Musee_Orsay_Clock.jpg)
-
+<img src="{{ site.url }}public/images/Musee_Orsay_Clock.jpg" width="100%"/>
