@@ -15,3 +15,10 @@ title: About
 * Coded with [Sublime Text 3](http://sublimetext.com) and [Kramdown](http://kramdown.gettalong.org/)	
 
 Questions / comments / feedback?  Reach out to me on [Twitter]({{ site.author.url }})
+
+## Site Favicon
+
+From a Paris trip a few years ago...
+
+![Musee_Orsay_Clock]({{ site.url }}_assets/Musee_Orsay_Clock.jpg)
+
