@@ -66,9 +66,17 @@ html {
     left: 0;
     bottom: 0;
     width: 18rem;
-    text-align: left;
+    text-align: center;
   }
 }
+
+/* Pages */
+/*
+h1.page-title {
+  color: #ac4142;
+}
+*/
+
 
 /* Sidebar links */
 .sidebar a {
@@ -76,11 +84,23 @@ html {
 }
 
 /* About section */
+
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
   font-family: "Abril Fatface", serif;
-  font-size: 3.25rem;
+  font-size: 3rem;
+}
+
+.sidebar-about .lead {
+  font-size: .8rem;
+}
+
+.sidebar-about .profile-picture {
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #A16D6E;
+  max-width: 5rem;
 }
 
 /* Sidebar nav */
@@ -89,14 +109,28 @@ html {
 }
 .sidebar-nav-item {
   display: block;
-  line-height: 1.75;
+  padding: .25rem 0.5rem;
+  background: #B66263;
+  margin: 0 .2rem;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-size: .8rem;
+  font-weight: bold;
+  float: left;
+  width: 17%;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
-  text-decoration: underline;
+  background: #6096ac;
+  text-decoration: none;
 }
 .sidebar-nav-item.active {
-  font-weight: bold;
+  color: #6096ac;
+  background: #fff;
+}
+a.sidebar-nav-item.active:hover,
+a.sidebar-nav-item.active:focus {
+  color: #fff;
 }
 
 /* Sticky sidebar
