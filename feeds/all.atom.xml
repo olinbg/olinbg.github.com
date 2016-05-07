@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay</title><link href="http://olinbg.github.io/" rel="alternate"></link><link href="http://olinbg.github.io/feeds/all.atom.xml" rel="self"></link><id>http://olinbg.github.io/</id><updated>2016-05-06T06:56:00-04:00</updated><entry><title>Pelican, Python, and Bash for Windows</title><link href="http://olinbg.github.io/posts/pelican-python-and-bash-for-windows.html" rel="alternate"></link><published>2016-05-06T06:56:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.github.io,2016-05-06:posts/pelican-python-and-bash-for-windows.html</id><summary type="html">&lt;p&gt;This site is up and running after setting up &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/about"&gt;Bash for Ubuntu for Windows&lt;/a&gt; and &lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;.  There are a few issues on BfW right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/all.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-05-06T18:40:00-04:00</updated><entry><title>Python and Pelican on Bash for Windows</title><link href="http://olinbg.com/posts/python-and-pelican-on-bash-for-windows.html" rel="alternate"></link><published>2016-05-06T18:40:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-06:posts/python-and-pelican-on-bash-for-windows.html</id><summary type="html">&lt;p&gt;This site is up and running after setting up &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/about"&gt;Bash for Ubuntu for Windows&lt;/a&gt; and &lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;.  There are a few issues on Bash for Windows right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.&lt;/p&gt;
 &lt;h2&gt;Installing Bash for Windows&lt;/h2&gt;
-&lt;p&gt;TBD&lt;/p&gt;
+&lt;p&gt;You'll need &lt;a href="https://insider.windows.com/"&gt;Windows Insider&lt;/a&gt; enabled on Windows 10 64-bit, and also &lt;a href="https://msdn.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development"&gt;developer features&lt;/a&gt; set for Windows updates.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/36352627/how-to-enable-bash-in-windows-10-developer-preview"&gt;This post on StackOverflow&lt;/a&gt; was also helpful.&lt;/p&gt;
+&lt;p&gt;You should now have the right Windows build (at least 14316):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="About" src="http://olinbg.com/images/2016-05-06/about.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Windows Build" src="http://olinbg.com/images/2016-05-06/build.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The Bash subsystem installation is straightforward.  I followed Microsoft's guide &lt;a href="https://blogs.msdn.microsoft.com/commandline/2016/04/06/bash-on-ubuntu-on-windows-download-now-3/"&gt;here&lt;/a&gt;, on the Windows Command Line blog.&lt;/p&gt;
+&lt;p&gt;Fire up Bash, and you've got a blinking cursor.&lt;/p&gt;
 &lt;h2&gt;Installing Python&lt;/h2&gt;
-&lt;p&gt;TBD&lt;/p&gt;
+&lt;p&gt;The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/201"&gt;here&lt;/a&gt;).  In the future, once this issue is addressed, virtual environments should work without issue.&lt;/p&gt;
+&lt;p&gt;The following command gets python and pip up and running.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install python3-pip
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Similar for git:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The magic of Bash for windows - no Cygwin installation required here.&lt;/p&gt;
 &lt;h2&gt;Installing Pelican&lt;/h2&gt;
-&lt;p&gt;TBD&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;If you're interested in Pelican, the installation should also be easy with python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install pelican markdown six
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, &lt;em&gt;this didn't work in Bash for Windows&lt;/em&gt;, again due to issues around filesystem errors and links (&lt;a href="http://stackoverflow.com/questions/36842969/python-3-pip-packages-install-on-ubuntu-on-windows-failing-with-errno-22"&gt;this StackOverflow&lt;/a&gt; got closest to my issue).&lt;/p&gt;
+&lt;p&gt;What ended up working is running each of the install commands individually, because the packaging step at the end is failing.  It's a major hack, but got me up and running for now.  If this isn't addressed in the next developer build, I'll file an issue for it.&lt;/p&gt;
+&lt;p&gt;Once Pelican is up and running, I recommand the &lt;a href="http://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;documentation quickstart&lt;/a&gt; as a first step.&lt;/p&gt;</summary></entry><entry><title>Generating SSH Keys for Github on Bash for Windows</title><link href="http://olinbg.com/posts/generating-ssh-keys-for-github-on-bash-for-windows.html" rel="alternate"></link><published>2016-05-06T06:56:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-06:posts/generating-ssh-keys-for-github-on-bash-for-windows.html</id><summary type="html">&lt;p&gt;If you'd rather not share SSH keys between your standard Windows installation and Bash for Windows, you can use the built-in key generator from Ubuntu to generate your ssh keys.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (path): &amp;lt;type&amp;gt;
+Enter passphrase (empty for no passphrase): &amp;lt;type&amp;gt;
+Enter same passphrase again:
+Your identification has been saved
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You'll have both a public and private key in your home directory.  If you want to upload your public key elsewhere, first dump it to the console (assuming you used the default path):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat ~/.ssh/id_rsa.pub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You'll see:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-rsa &amp;lt;key text&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Select everything before your machine name on the last line and press Ctrl+C to copy.  Open &lt;a href="https://github.com/settings/profile"&gt;your profile settings&lt;/a&gt; on GitHub, navigate to "SSH and GPG Keys", and paste in your ssh-rsa key:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="SSH settings in GitHub" src="http://olinbg.com/images/2016-05-06/github.png" /&gt;&lt;/p&gt;
+&lt;p&gt;You'll get a notification that the key hasn't been used yet.  Clone a repo, and you're good to go.&lt;/p&gt;</summary></entry></feed>
