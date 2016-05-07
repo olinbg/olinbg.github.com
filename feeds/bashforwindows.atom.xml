@@ -51,4 +51,4 @@ Your identification has been saved
 
 &lt;p&gt;Select everything before your machine name on the last line and press Ctrl+C to copy.  Open &lt;a href="https://github.com/settings/profile"&gt;your profile settings&lt;/a&gt; on GitHub, navigate to "SSH and GPG Keys", and paste in your ssh-rsa key:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="SSH settings in GitHub" src="http://olinbg.com/images/2016-05-06/github.png" /&gt;&lt;/p&gt;
-&lt;p&gt;You'll get a notification that the key hasn't been used yet.  Clone a repo, and you're good to go.&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;You'll get a notification that the key hasn't been used yet.  Clone a repo, and you're ready to go.&lt;/p&gt;</summary></entry></feed>
