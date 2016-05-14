@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Fri, 06 May 2016 18:40:00 -0400</lastBuildDate><item><title>Python and Pelican on Bash for Windows2</title><link>http://olinbg.com/posts/pelican-python-bash.html</link><description>&lt;p&gt;This site is up and running after setting up &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/about"&gt;Bash for Ubuntu for Windows&lt;/a&gt; and &lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;.  There are a few issues on Bash for Windows right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.&lt;/p&gt;
+<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Thu, 12 May 2016 22:52:00 -0400</lastBuildDate><item><title>Helpful Pelican Settings</title><link>http://olinbg.com/posts/helpful-pelican-settings.html</link><description>&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
+&lt;h3&gt;EXTRA_PATH_METADATA&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
+&lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/.nojekyll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.nojekyll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This setting allows you to copy either paths or files directly into your output directory in Pelican.  This solves an important problem when using static hosting on sites like github pages: maintaining repository files as your site generates.&lt;/p&gt;
+&lt;p&gt;In the example above, the &lt;em&gt;CNAME&lt;/em&gt;, &lt;em&gt;README&lt;/em&gt; and &lt;em&gt;.nojekyll&lt;/em&gt; configuration files are copied into the top output directory.  I can then commit those on uplaod to gh-pages.&lt;/p&gt;
+&lt;h3&gt;ARTICLE_URL and ARTICLE_SAVE_AS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;posts/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;posts/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I wasn't as pleased with the output format of the default pelican setup, which dumps posts into the top-level directory.  The example formats the posts into a 'posts' directory using &lt;em&gt;ARTICLE_URL&lt;/em&gt;, keeping the top-level cleaner.  You could also add YYYYMMDD or tags into the post path here, and &lt;em&gt;SAVE_AS&lt;/em&gt; variant can change the location of the output file.&lt;/p&gt;
+&lt;h3&gt;DELETE_OUTPUT_DIRECTORY and OUTPUT_RETENTION&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;OUTPUT_RETENTION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.git&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.gitignore&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To ensure a clean build before publishing, you can use &lt;em&gt;DELETE_OUTPUT_DIRECTORY&lt;/em&gt;.  However, this was wiping out my .git directory each time.  I tracked down the &lt;em&gt;OUTPUT_RETENTION&lt;/em&gt; setting, that ensures on delete the files / paths listed stay intact.&lt;/p&gt;
+&lt;h3&gt;FEED_ALL_RSS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;FEED_ALL_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The Pelican install by default had only enabled an ATOM feed, but not RSS.  The &lt;em&gt;FEED_ALL_RSS&lt;/em&gt; setting does what it says, generating the feed in the path provided.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Olin Gay</dc:creator><pubDate>Thu, 12 May 2016 22:52:00 -0400</pubDate><guid isPermaLink="false">tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</guid></item><item><title>Python and Pelican on Bash for Windows</title><link>http://olinbg.com/posts/pelican-python-bash.html</link><description>&lt;p&gt;This site is up and running after setting up &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/about"&gt;Bash for Ubuntu for Windows&lt;/a&gt; and &lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;.  There are a few issues on Bash for Windows right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.&lt;/p&gt;
 &lt;h2&gt;Installing Bash for Windows&lt;/h2&gt;
 &lt;p&gt;You'll need &lt;a href="https://insider.windows.com/"&gt;Windows Insider&lt;/a&gt; enabled on Windows 10 64-bit, and also &lt;a href="https://msdn.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development"&gt;developer features&lt;/a&gt; set for Windows updates.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/36352627/how-to-enable-bash-in-windows-10-developer-preview"&gt;This post on StackOverflow&lt;/a&gt; was also helpful.&lt;/p&gt;
@@ -9,7 +42,7 @@
 &lt;p&gt;The Bash subsystem installation is straightforward.  I followed Microsoft's guide &lt;a href="https://blogs.msdn.microsoft.com/commandline/2016/04/06/bash-on-ubuntu-on-windows-download-now-3/"&gt;here&lt;/a&gt;, on the Windows Command Line blog.&lt;/p&gt;
 &lt;p&gt;Fire up Bash, and you've got a blinking cursor.&lt;/p&gt;
 &lt;h2&gt;Installing Python&lt;/h2&gt;
-&lt;p&gt;The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/201"&gt;here&lt;/a&gt;).  In the future, once this issue is addressed, virtual environments should work without issue.&lt;/p&gt;
+&lt;p&gt;The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/201"&gt;here&lt;/a&gt;).  &lt;strong&gt;UPDATE&lt;/strong&gt; - looks like the fix is in the latest build, give it a shot!&lt;/p&gt;
 &lt;p&gt;The following command gets python and pip up and running.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install python3-pip
 &lt;/pre&gt;&lt;/div&gt;

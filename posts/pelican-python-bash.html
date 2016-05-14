@@ -82,7 +82,7 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Python and Pelican on Bash for Windows2</h1>
+	<h1 class="post-title">Python and Pelican on Bash for Windows</h1>
 	<span class="post-date">Fri 06 May 2016</span>
 	<p>This site is up and running after setting up <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about">Bash for Ubuntu for Windows</a> and <a href="http://blog.getpelican.com/">Pelican</a>.  There are a few issues on Bash for Windows right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.</p>
 <h2>Installing Bash for Windows</h2>
@@ -94,7 +94,7 @@
 <p>The Bash subsystem installation is straightforward.  I followed Microsoft's guide <a href="https://blogs.msdn.microsoft.com/commandline/2016/04/06/bash-on-ubuntu-on-windows-download-now-3/">here</a>, on the Windows Command Line blog.</p>
 <p>Fire up Bash, and you've got a blinking cursor.</p>
 <h2>Installing Python</h2>
-<p>The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are <a href="https://github.com/Microsoft/BashOnWindows/issues/201">here</a>).  In the future, once this issue is addressed, virtual environments should work without issue.</p>
+<p>The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are <a href="https://github.com/Microsoft/BashOnWindows/issues/201">here</a>).  <strong>UPDATE</strong> - looks like the fix is in the latest build, give it a shot!</p>
 <p>The following command gets python and pip up and running.</p>
 <div class="highlight"><pre><span></span>sudo apt-get install python3-pip
 </pre></div>
