@@ -81,20 +81,32 @@
 		</nav>
 	</div>
 </div>		<div class="content container">
-<h1>Archives for Olin Gay - Blog</h1>
+<div class="post">
+	<h1 class="post-title">Setting Timezone in Bash for Windows</h1>
+	<span class="post-date">Sat 14 May 2016</span>
+	<p>Really quick and easy change, but one that didn't work correctly on my <a href="http://olinbg.com/posts/pelican-python-bash.html">initial Bash for Windows install</a> - timezone!</p>
+<p>Initially I was getting UTC from <em>date</em>:</p>
+<div class="highlight"><pre><span></span>date &quot;+%Y-%m-%d %H:%M:%S&quot;
+2016-05-14 11:11:00
+</pre></div>
 
-<dl>
-    <dt>Sat 14 May 2016</dt>
-    <dd><a href="http://olinbg.com/posts/timezone-in-bfw.html">Setting Timezone in Bash for Windows</a></dd>
-    <dt>Sat 14 May 2016</dt>
-    <dd><a href="http://olinbg.com/posts/pelican-to-gh-bfw.html">Publish Pelican to GitHub from Bash for Windows</a></dd>
-    <dt>Thu 12 May 2016</dt>
-    <dd><a href="http://olinbg.com/posts/helpful-pelican-settings.html">Helpful Pelican Settings</a></dd>
-    <dt>Fri 06 May 2016</dt>
-    <dd><a href="http://olinbg.com/posts/pelican-python-bash.html">Python and Pelican on Bash for Windows</a></dd>
-    <dt>Fri 06 May 2016</dt>
-    <dd><a href="http://olinbg.com/posts/ssh-key-github-bfw.html">Generating SSH Keys for Github on Bash for Windows</a></dd>
-</dl>
+
+<p>A single link will allow Bash For Windows to pick up the right timezone.  In my case, I'm looking for EST (New York):</p>
+<div class="highlight"><pre><span></span>sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+</pre></div>
+
+
+<p>Running date again:</p>
+<div class="highlight"><pre><span></span>date &quot;+%Y-%m-%d %H:%M:%S&quot;
+2016-05-14 07:12:21
+</pre></div>
+
+
+<p>To see the other timezones available:</p>
+<div class="highlight"><pre><span></span>cd /usr/share/zoneinfo
+ls -l
+</pre></div>
+<span><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></span></div>
 		</div>
 	</body>
 </html>

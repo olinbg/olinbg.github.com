@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay - Blog</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/all.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-05-12T22:52:00-04:00</updated><entry><title>Helpful Pelican Settings</title><link href="http://olinbg.com/posts/helpful-pelican-settings.html" rel="alternate"></link><published>2016-05-12T22:52:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</id><summary type="html">&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay - Blog</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/all.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-05-14T07:08:00-04:00</updated><entry><title>Setting Timezone in Bash for Windows</title><link href="http://olinbg.com/posts/timezone-in-bfw.html" rel="alternate"></link><published>2016-05-14T07:08:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-14:posts/timezone-in-bfw.html</id><summary type="html">&lt;p&gt;Really quick and easy change, but one that didn't work correctly on my &lt;a href="http://olinbg.com/posts/pelican-python-bash.html"&gt;initial Bash for Windows install&lt;/a&gt; - timezone!&lt;/p&gt;
+&lt;p&gt;Initially I was getting UTC from &lt;em&gt;date&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;
+2016-05-14 11:11:00
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A single link will allow Bash For Windows to pick up the right timezone.  In my case, I'm looking for EST (New York):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Running date again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;
+2016-05-14 07:12:21
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To see the other timezones available:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /usr/share/zoneinfo
+ls -l
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Publish Pelican to GitHub from Bash for Windows</title><link href="http://olinbg.com/posts/pelican-to-gh-bfw.html" rel="alternate"></link><published>2016-05-14T06:37:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-14:posts/pelican-to-gh-bfw.html</id><summary type="html">&lt;p&gt;&lt;em&gt;(You probably want to review &lt;a href="http://olinbg.com/posts/pelican-python-bash.html"&gt;my earlier post on setting up Python and Pelican&lt;/a&gt;, and if you haven't already, &lt;a href="http://olinbg.com/posts/ssh-key-github-bfw.html"&gt;set up ssh keys as well&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;There are a number of places to publish a Pelican site, but I was immediately drawn to &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Free to use&lt;/li&gt;
+&lt;li&gt;Integrates with your existing Github account&lt;/li&gt;
+&lt;li&gt;Natively supports static sites, like Jekyll and Pelican&lt;/li&gt;
+&lt;li&gt;Easy to automate on the command line&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="http://docs.getpelican.com/en/latest/quickstart.html"&gt;documentation quickstart for Pelican&lt;/a&gt; helps you get a site built.  But how do you publish this site up to github pages?&lt;/p&gt;
+&lt;h3&gt;Ensure the site builds and displays&lt;/h3&gt;
+&lt;p&gt;Fire up Bash for Windows and change to your site directory.  Assuming you're using the makefile, run &lt;em&gt;make server&lt;/em&gt; to create your output directory and load it in your local browser.  For my site:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd olinbg
+make serve
+(site is now running at http://localhost:8000)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If &lt;a href="http://localhost:8000"&gt;the localhost link renders&lt;/a&gt;, you're ready to upload.&lt;/p&gt;
+&lt;h3&gt;Create the repo&lt;/h3&gt;
+&lt;p&gt;Start with the guide right on the &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; site.  From their current guide:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create a repo" src="http://olinbg.com/images/2016-05-14/repo.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Initial push&lt;/h3&gt;
+&lt;p&gt;Before you push all the content, copy your site content into the &lt;em&gt;username.github.io&lt;/em&gt; directory, then push the content.  In Bash for Windows (replace &lt;em&gt;username&lt;/em&gt; and &lt;em&gt;your_pelican_output_dir&lt;/em&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp -r output username.github.io
+cd username.github.io
+git add --all
+git commit -m &amp;quot;Initial commit&amp;quot;
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Edit description&lt;/h3&gt;
+&lt;p&gt;After pushing your first content, head over to your repo on github.  You'll see a github pages header where you can set a description and site address (should match your address from earlier):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Edit" src="http://olinbg.com/images/2016-05-14/edit.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Test the page&lt;/h3&gt;
+&lt;p&gt;Now navigate to the actual page: &lt;em&gt;username.github.io&lt;/em&gt;.  You should see your start Pelican content.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Site" src="http://olinbg.com/images/2016-05-14/site.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Adding a README&lt;/h3&gt;
+&lt;p&gt;I wanted to ensure my github repo had a README added (standard practice).  Rather than ignore this in the output directory that's uploaded to github, I added this as file to copy in my pelicanconf.py:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir content/files
+touch content/files/README.md
+(edit the README with content)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now add the following to your pelican configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Uploading your 'content' directory&lt;/h3&gt;
+&lt;p&gt;You can follow similar steps using git to upload your 'content' folder.  This is advisable so you have a working repo as you edit your site.  Instructions are more straightforward here - simply create a new repo for you source content, and follow the "Initial push" instructions above.&lt;/p&gt;</summary></entry><entry><title>Helpful Pelican Settings</title><link href="http://olinbg.com/posts/helpful-pelican-settings.html" rel="alternate"></link><published>2016-05-12T22:52:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</id><summary type="html">&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
 &lt;h3&gt;EXTRA_PATH_METADATA&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
 &lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -62,7 +136,7 @@
 
 &lt;p&gt;However, &lt;em&gt;this didn't work in Bash for Windows&lt;/em&gt;, again due to issues around filesystem errors and links (&lt;a href="http://stackoverflow.com/questions/36842969/python-3-pip-packages-install-on-ubuntu-on-windows-failing-with-errno-22"&gt;this StackOverflow&lt;/a&gt; got closest to my issue).&lt;/p&gt;
 &lt;p&gt;What ended up working is running each of the install commands individually, because the packaging step at the end is failing.  It's a major hack, but got me up and running for now.  If this isn't addressed in the next developer build, I'll file an issue for it.&lt;/p&gt;
-&lt;p&gt;Once Pelican is up and running, I recommend the &lt;a href="http://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;documentation quickstart&lt;/a&gt; as a first step.&lt;/p&gt;</summary></entry><entry><title>Generating SSH Keys for Github on Bash for Windows</title><link href="http://olinbg.com/posts/ssh-key-github-bfw.html" rel="alternate"></link><published>2016-05-06T06:56:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-06:posts/ssh-key-github-bfw.html</id><summary type="html">&lt;p&gt;If you'd rather not share SSH keys between your standard Windows installation and Bash for Windows, you can use the built-in key generator from Ubuntu to generate your ssh keys.&lt;/p&gt;
+&lt;p&gt;Once Pelican is up and running, I recommend the &lt;a href="http://docs.getpelican.com/en/latest/quickstart.html"&gt;documentation quickstart&lt;/a&gt; as a first step.&lt;/p&gt;</summary></entry><entry><title>Generating SSH Keys for Github on Bash for Windows</title><link href="http://olinbg.com/posts/ssh-key-github-bfw.html" rel="alternate"></link><published>2016-05-06T06:56:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-06:posts/ssh-key-github-bfw.html</id><summary type="html">&lt;p&gt;If you'd rather not share SSH keys between your standard Windows installation and Bash for Windows, you can use the built-in key generator from Ubuntu to generate your ssh keys.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (path): &amp;lt;type&amp;gt;

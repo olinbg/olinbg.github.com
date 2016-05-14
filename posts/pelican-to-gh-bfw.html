@@ -83,8 +83,61 @@
 </div>		<div class="content container">
 <div class="post">
 	<h1 class="post-title">Publish Pelican to GitHub from Bash for Windows</h1>
-	<span class="post-date">Sun 08 May 2016</span>
-	<p>(Fill in)</p>
+	<span class="post-date">Sat 14 May 2016</span>
+	<p><em>(You probably want to review <a href="http://olinbg.com/posts/pelican-python-bash.html">my earlier post on setting up Python and Pelican</a>, and if you haven't already, <a href="http://olinbg.com/posts/ssh-key-github-bfw.html">set up ssh keys as well</a>)</em></p>
+<p>There are a number of places to publish a Pelican site, but I was immediately drawn to <a href="https://pages.github.com/">GitHub Pages</a>:</p>
+<ul>
+<li>Free to use</li>
+<li>Integrates with your existing Github account</li>
+<li>Natively supports static sites, like Jekyll and Pelican</li>
+<li>Easy to automate on the command line</li>
+</ul>
+<p>The <a href="http://docs.getpelican.com/en/latest/quickstart.html">documentation quickstart for Pelican</a> helps you get a site built.  But how do you publish this site up to github pages?</p>
+<h3>Ensure the site builds and displays</h3>
+<p>Fire up Bash for Windows and change to your site directory.  Assuming you're using the makefile, run <em>make server</em> to create your output directory and load it in your local browser.  For my site:</p>
+<div class="highlight"><pre><span></span>cd olinbg
+make serve
+(site is now running at http://localhost:8000)
+</pre></div>
+
+
+<p>If <a href="http://localhost:8000">the localhost link renders</a>, you're ready to upload.</p>
+<h3>Create the repo</h3>
+<p>Start with the guide right on the <a href="https://pages.github.com/">GitHub Pages</a> site.  From their current guide:</p>
+<p><img alt="Create a repo" src="http://olinbg.com/images/2016-05-14/repo.png" /></p>
+<h3>Initial push</h3>
+<p>Before you push all the content, copy your site content into the <em>username.github.io</em> directory, then push the content.  In Bash for Windows (replace <em>username</em> and <em>your_pelican_output_dir</em>):</p>
+<div class="highlight"><pre><span></span>cp -r output username.github.io
+cd username.github.io
+git add --all
+git commit -m &quot;Initial commit&quot;
+git push -u origin master
+</pre></div>
+
+
+<h3>Edit description</h3>
+<p>After pushing your first content, head over to your repo on github.  You'll see a github pages header where you can set a description and site address (should match your address from earlier):</p>
+<p><img alt="Edit" src="http://olinbg.com/images/2016-05-14/edit.png" /></p>
+<h3>Test the page</h3>
+<p>Now navigate to the actual page: <em>username.github.io</em>.  You should see your start Pelican content.</p>
+<p><img alt="Site" src="http://olinbg.com/images/2016-05-14/site.png" /></p>
+<h3>Adding a README</h3>
+<p>I wanted to ensure my github repo had a README added (standard practice).  Rather than ignore this in the output directory that's uploaded to github, I added this as file to copy in my pelicanconf.py:</p>
+<div class="highlight"><pre><span></span>mkdir content/files
+touch content/files/README.md
+(edit the README with content)
+</pre></div>
+
+
+<p>Now add the following to your pelican configuration:</p>
+<div class="highlight"><pre><span></span><span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;files/README.md&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;README.md&#39;</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Uploading your 'content' directory</h3>
+<p>You can follow similar steps using git to upload your 'content' folder.  This is advisable so you have a working repo as you edit your site.  Instructions are more straightforward here - simply create a new repo for you source content, and follow the "Initial push" instructions above.</p>
 <span><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></span></div>
 		</div>
 	</body>
