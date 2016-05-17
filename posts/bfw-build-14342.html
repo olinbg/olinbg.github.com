@@ -8,7 +8,7 @@
 		<!-- Enable responsiveness on mobile devices-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-		<title>Olin Gay - Blog - Authors</title>
+		<title>Olin Gay - Blog</title>
 
         <!-- Icons -->
         <link rel="apple-touch-icon" sizes="57x57" href="http://olinbg.com/favicon/apple-touch-icon-57x57.png">
@@ -81,10 +81,25 @@
 		</nav>
 	</div>
 </div>		<div class="content container">
-    <h1>Authors on Olin Gay - Blog</h1>
+<div class="post">
+	<h1 class="post-title">Bash for Windows: Build 14342</h1>
+	<span class="post-date">Mon 16 May 2016</span>
+	<p>The Windows team announced a new Insider build a few days ago <a href="https://blogs.windows.com/windowsexperience/2016/05/10/announcing-windows-10-insider-preview-build-14342/">on their blog</a>.  There's an even better breakdown on the <a href="https://msdn.microsoft.com/en-us/commandline/wsl/release_notes">Bash for Windows site</a>.  This is a great update, here are a few highlights:</p>
+<h2>Symlinks are now working</h2>
+<p>From the notes:</p>
+<div class="highlight"><pre><span></span>Enabled symlinks in DriveFs (/mnt/) directories
+Symlinks now work between DriveFs and VolFs
+</pre></div>
 
-    <ul>        <li><a href="http://olinbg.com/author/olin-gay.html">Olin Gay</a> (6)</li>
-    </ul>
+
+<p>I had immediately seen errors with symlinks after I started using Bash for Windows.  Doing simple things, like installing packages and creating Python virtual environments, failed in many scenarios.  I knew these issues were reported and tracked, so it's great to see this addressed in this build.</p>
+<h2>ZSH shell is now available</h2>
+<p>I have been following <a href="https://github.com/Microsoft/BashOnWindows/issues/91">this long GitHub issue</a> as I'm a ZSH user both at work and on my Mac.  Shell choice is a personal thing, but for me, this will mean only one set of syntax rules to learn.  Oh, and don't forget <a href="https://github.com/robbyrussell/oh-my-zsh">Oh My Zsh</a>.</p>
+<h2>Syscall improvements</h2>
+<p>One of the best part of the Bash for Windows implementation is how native it feels.  In order to improve the experience further over time, more syscalls need to be ported and available in WSL.  This release saw another set of syscalls implemented, and previous patch notes also had similar lists.</p>
+<h2>Warning: ".." failing in some cases</h2>
+<p>I noticed an issue when running Pelican that copying files was failing.  It turns out that in certain cases, following ".." in Bash for Windows can fail currently.  This is a known issue that will be fixed in a future build.</p>
+<span><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></span></div>
 		</div>
 	</body>
 </html>
