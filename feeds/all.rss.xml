@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Mon, 16 May 2016 21:27:00 -0400</lastBuildDate><item><title>Bash for Windows: Build 14342</title><link>http://olinbg.com/posts/bfw-build-14342.html</link><description>&lt;p&gt;The Windows team announced a new Insider build a few days ago &lt;a href="https://blogs.windows.com/windowsexperience/2016/05/10/announcing-windows-10-insider-preview-build-14342/"&gt;on their blog&lt;/a&gt;.  There's an even better breakdown on the &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/release_notes"&gt;Bash for Windows site&lt;/a&gt;.  This is a great update, here are a few highlights:&lt;/p&gt;
+<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Mon, 30 May 2016 07:27:00 -0400</lastBuildDate><item><title>Running zsh in Bash for Windows</title><link>http://olinbg.com/posts/zsh-in-bfw.html</link><description>&lt;p&gt;Simply put, &lt;a href="http://zsh.org"&gt;zsh&lt;/a&gt; is my favorite shell.  I also use the &lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;oh-my-zsh&lt;/a&gt; plugin to get sane defaults and a slew of community-written plugins.  Obviously shell choice is very personal, but getting zsh running on &lt;a href="https://github.com/Microsoft/BashOnWindows"&gt;Bash for Windows&lt;/a&gt; was a priority for me.&lt;/p&gt;
+&lt;p&gt;Since Bash for Windows is just getting off the ground, we needed &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/91"&gt;this GitHub issue&lt;/a&gt; to get resolved before zsh would work.  Now that it's been closed, let's get started.&lt;/p&gt;
+&lt;h2&gt;Installing zsh&lt;/h2&gt;
+&lt;p&gt;First, ensure your Windows Preview build is up to date.&lt;/p&gt;
+&lt;p&gt;Then install zsh from your Bash prompt:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install zsh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Running zsh&lt;/h2&gt;
+&lt;p&gt;Now, sitting at a bash prompt, run zsh:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;zsh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You'll be presented with a series of menus to setup zsh.  You can take the defaults if you're installing oh-my-zsh, otherwise walk through the menus and choose your values.&lt;/p&gt;
+&lt;p&gt;Once done with configuration, you'll see this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;The code added to ~/.zshrc is marked by the lines
+# Lines configured by zsh-newuser-install
+# End of lines configured by zsh-newuser-install
+You should not edit anything between these lines if you intend to
+run zsh-newuser-install again.  You may, however, edit any other part
+of the file.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;zsh is now setup, you can check with --version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;zsh --version
+zsh 5.0.2 (x86_64-pc-linux-gnu)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Installing oh-my-zsh&lt;/h2&gt;
+&lt;p&gt;I don't usually run zsh without oh-my-zsh, so let's install that as well.&lt;/p&gt;
+&lt;p&gt;You can see the full install guide &lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;here&lt;/a&gt;, but here's the basic command to run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You should see a message that your existing .zshrc has been replaces by oh-my-zsh:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Looking for an existing zsh config...
+Found ~/.zshrc. Backing up to ~/.zshrc.pre-oh-my-zsh
+Using the Oh My Zsh template file and adding it to ~/.zshrc
+Copying your current PATH and adding it to the end of ~/.zshrc for you.
+Time to change your default shell to zsh!
+Password: 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Enter your password, and you'll see a block text "oh-my-zsh" confirming you're ready to go.&lt;/p&gt;
+&lt;h2&gt;Change the color scheme for oh-my-zsh&lt;/h2&gt;
+&lt;p&gt;It's quick and easy to change your theme for oh-my-zsh.&lt;/p&gt;
+&lt;p&gt;First, check out &lt;a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes"&gt;the list of themes here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Then, open your ~/.zshrc file and change the theme entry to the theme you want:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim ~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You'll see the theme section near the top.  Save, close, and restart zsh to see the color changes.&lt;/p&gt;
+&lt;h2&gt;Change your default shell to zsh&lt;/h2&gt;
+&lt;p&gt;This is the last step - making zsh the default shell.  Oh Bash for Windows, given it's pre-release software, we want to make sure we can revert to the bash shell easily.&lt;/p&gt;
+&lt;p&gt;To set this up, open your .bashrc file in vim:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim ~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Make the last line in the file this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exec zsh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;...and save.  The next time you start Bash for Windows, it will become ZSH for Windows before starting.&lt;/p&gt;
+&lt;p&gt;To revert the change, comment out the line above from your .bashrc file.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Olin Gay</dc:creator><pubDate>Mon, 30 May 2016 07:27:00 -0400</pubDate><guid isPermaLink="false">tag:olinbg.com,2016-05-30:posts/zsh-in-bfw.html</guid></item><item><title>Bash for Windows: Build 14342</title><link>http://olinbg.com/posts/bfw-build-14342.html</link><description>&lt;p&gt;The Windows team announced a new Insider build a few days ago &lt;a href="https://blogs.windows.com/windowsexperience/2016/05/10/announcing-windows-10-insider-preview-build-14342/"&gt;on their blog&lt;/a&gt;.  There's an even better breakdown on the &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/release_notes"&gt;Bash for Windows site&lt;/a&gt;.  This is a great update, here are a few highlights:&lt;/p&gt;
 &lt;h2&gt;Symlinks are now working&lt;/h2&gt;
 &lt;p&gt;From the notes:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Enabled symlinks in DriveFs (/mnt/) directories

@@ -8,7 +8,7 @@
 		<!-- Enable responsiveness on mobile devices-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-		<title>Olin Gay - Blog - Authors</title>
+		<title>Olin Gay - Blog</title>
 
         <!-- Icons -->
         <link rel="apple-touch-icon" sizes="57x57" href="http://olinbg.com/favicon/apple-touch-icon-57x57.png">
@@ -81,10 +81,83 @@
 		</nav>
 	</div>
 </div>		<div class="content container">
-    <h1>Authors on Olin Gay - Blog</h1>
+<div class="post">
+	<h1 class="post-title">Running zsh in Bash for Windows</h1>
+	<span class="post-date">Mon 30 May 2016</span>
+	<p>Simply put, <a href="http://zsh.org">zsh</a> is my favorite shell.  I also use the <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> plugin to get sane defaults and a slew of community-written plugins.  Obviously shell choice is very personal, but getting zsh running on <a href="https://github.com/Microsoft/BashOnWindows">Bash for Windows</a> was a priority for me.</p>
+<p>Since Bash for Windows is just getting off the ground, we needed <a href="https://github.com/Microsoft/BashOnWindows/issues/91">this GitHub issue</a> to get resolved before zsh would work.  Now that it's been closed, let's get started.</p>
+<h2>Installing zsh</h2>
+<p>First, ensure your Windows Preview build is up to date.</p>
+<p>Then install zsh from your Bash prompt:</p>
+<div class="highlight"><pre><span></span>sudo apt-get install zsh
+</pre></div>
 
-    <ul>        <li><a href="http://olinbg.com/author/olin-gay.html">Olin Gay</a> (7)</li>
-    </ul>
+
+<h2>Running zsh</h2>
+<p>Now, sitting at a bash prompt, run zsh:</p>
+<div class="highlight"><pre><span></span>zsh
+</pre></div>
+
+
+<p>You'll be presented with a series of menus to setup zsh.  You can take the defaults if you're installing oh-my-zsh, otherwise walk through the menus and choose your values.</p>
+<p>Once done with configuration, you'll see this:</p>
+<div class="highlight"><pre><span></span>The code added to ~/.zshrc is marked by the lines
+# Lines configured by zsh-newuser-install
+# End of lines configured by zsh-newuser-install
+You should not edit anything between these lines if you intend to
+run zsh-newuser-install again.  You may, however, edit any other part
+of the file.
+</pre></div>
+
+
+<p>zsh is now setup, you can check with --version:</p>
+<div class="highlight"><pre><span></span>zsh --version
+zsh 5.0.2 (x86_64-pc-linux-gnu)
+</pre></div>
+
+
+<h2>Installing oh-my-zsh</h2>
+<p>I don't usually run zsh without oh-my-zsh, so let's install that as well.</p>
+<p>You can see the full install guide <a href="https://github.com/robbyrussell/oh-my-zsh">here</a>, but here's the basic command to run:</p>
+<div class="highlight"><pre><span></span>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</pre></div>
+
+
+<p>You should see a message that your existing .zshrc has been replaces by oh-my-zsh:</p>
+<div class="highlight"><pre><span></span>Looking for an existing zsh config...
+Found ~/.zshrc. Backing up to ~/.zshrc.pre-oh-my-zsh
+Using the Oh My Zsh template file and adding it to ~/.zshrc
+Copying your current PATH and adding it to the end of ~/.zshrc for you.
+Time to change your default shell to zsh!
+Password: 
+</pre></div>
+
+
+<p>Enter your password, and you'll see a block text "oh-my-zsh" confirming you're ready to go.</p>
+<h2>Change the color scheme for oh-my-zsh</h2>
+<p>It's quick and easy to change your theme for oh-my-zsh.</p>
+<p>First, check out <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">the list of themes here</a>.</p>
+<p>Then, open your ~/.zshrc file and change the theme entry to the theme you want:</p>
+<div class="highlight"><pre><span></span>vim ~/.zshrc
+</pre></div>
+
+
+<p>You'll see the theme section near the top.  Save, close, and restart zsh to see the color changes.</p>
+<h2>Change your default shell to zsh</h2>
+<p>This is the last step - making zsh the default shell.  Oh Bash for Windows, given it's pre-release software, we want to make sure we can revert to the bash shell easily.</p>
+<p>To set this up, open your .bashrc file in vim:</p>
+<div class="highlight"><pre><span></span>vim ~/.bashrc
+</pre></div>
+
+
+<p>Make the last line in the file this:</p>
+<div class="highlight"><pre><span></span>exec zsh
+</pre></div>
+
+
+<p>...and save.  The next time you start Bash for Windows, it will become ZSH for Windows before starting.</p>
+<p>To revert the change, comment out the line above from your .bashrc file.</p>
+<span><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></span></div>
 		</div>
 	</body>
 </html>
