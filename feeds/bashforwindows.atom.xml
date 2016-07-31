@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay - Blog</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/bashforwindows.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-05-30T07:27:00-04:00</updated><entry><title>Running zsh in Bash for Windows</title><link href="http://olinbg.com/posts/zsh-in-bfw.html" rel="alternate"></link><published>2016-05-30T07:27:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-30:posts/zsh-in-bfw.html</id><summary type="html">&lt;p&gt;&lt;a href="http://zsh.org"&gt;zsh&lt;/a&gt; is my favorite shell.  I also use the &lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;oh-my-zsh&lt;/a&gt; plugin to get sane defaults and a slew of community-written plugins.  Obviously shell choice is very personal, but getting zsh running on &lt;a href="https://github.com/Microsoft/BashOnWindows"&gt;Bash for Windows&lt;/a&gt; was a priority for me.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay - Blog</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/bashforwindows.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-07-31T07:51:00-04:00</updated><entry><title>Uninstall and Reinstall Bash for Windows</title><link href="http://olinbg.com/posts/uninstall-reinstall-bfw.html" rel="alternate"></link><published>2016-07-31T07:51:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-07-31:posts/uninstall-reinstall-bfw.html</id><summary type="html">&lt;p&gt;After the most recent update for Bash for Windows, a fairly major change went into effect: you're now logged in with a "user" level account rather than "root".  This has major benefits, and works much more like any other Linux/Unix install that you'd run locally.&lt;/p&gt;
+&lt;h2&gt;Early Adopters Used &lt;em&gt;root&lt;/em&gt;, not &lt;em&gt;user&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Some of the original components that I had installed under root were now not manageable by the user account - notably the Python 2.7 and 3.4 installs.  Switching back and forth to root was possible, but onerous.  Here's the command to change the default login for the Linux Sub-system (LXSS) run in PowerShell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PS C:\Windows\System32\WindowsPowerShell\v1.0&amp;gt; lxrun
+Performs administrative operations on the LX subsystem
+
+...
+    /setdefaultuser - Configures the subsystem user that bash will be launched as. If the user does not exist it will be created.
+        Optional arguments:
+            username - Supply the username
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This didn't seem sustainable long-term, and I preferred to start "fresh" with a user-mode Ubuntu image from the start.  So I did some digging on uninstalling and reinstalling the LXSS.&lt;/p&gt;
+&lt;h2&gt;Uninstalling Bash for Windows&lt;/h2&gt;
+&lt;p&gt;First some links:&lt;/p&gt;
+&lt;p&gt;The initial GitHub issue: &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/4"&gt;Reinstalling clean image #4&lt;/a&gt;
+The Lxss command reference: &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/reference?f=255&amp;amp;MSPPError=-2147217396"&gt;Command Reference&lt;/a&gt;
+User support documentation within Bash for Windows: &lt;a href="https://msdn.microsoft.com/en-us/commandline/wsl/user_support"&gt;User Support&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After reviewing, the key commands to execute were first to uninstall completely (instead of just removing the user install), and then reinstalling.&lt;/p&gt;
+&lt;p&gt;First, the uninstall:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PS C:\Windows\System32\WindowsPowerShell\v1.0&amp;gt; lxrun /uninstall /full
+This will uninstall Ubuntu on Windows.
+This will remove the Ubuntu environment as well as any modifications, new applications, and user data.
+Type &amp;quot;y&amp;quot; to continue: y
+Uninstalling...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can confirm the directory has been removed by trying to open the path &lt;code&gt;%USERPROFILE%\AppData\Local\Lxss&lt;/code&gt; - it should fail.&lt;/p&gt;
+&lt;h2&gt;Re-installing Bash for Windows&lt;/h2&gt;
+&lt;p&gt;The reinstall was very simple - simply run a similar Lxss command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PS C:\Windows\System32\WindowsPowerShell\v1.0&amp;gt; lxrun /install
+-- Beta feature --
+This will install Ubuntu on Windows, distributed by Canonical
+and licensed under its terms available here:
+https://aka.ms/uowterms
+
+Type &amp;quot;y&amp;quot; to continue: y
+Downloading from the Windows Store... 100%
+Extracting filesystem, this will take a few minutes...
+Please create a default UNIX user account. The username does not need to match your Windows username.
+For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: &amp;lt;user&amp;gt;
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Installation successful!
+PS C:\Windows\System32\WindowsPowerShell\v1.0&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In my case, most files were mounted in a C: folder, so I just need to reconfigure Python and other installs.  To see those steps, check out &lt;a href="http://olinbg.com/posts/pelican-python-bash.html"&gt;this post&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Running zsh in Bash for Windows</title><link href="http://olinbg.com/posts/zsh-in-bfw.html" rel="alternate"></link><published>2016-05-30T07:27:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-30:posts/zsh-in-bfw.html</id><summary type="html">&lt;p&gt;&lt;a href="http://zsh.org"&gt;zsh&lt;/a&gt; is my favorite shell.  I also use the &lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;oh-my-zsh&lt;/a&gt; plugin to get sane defaults and a slew of community-written plugins.  Obviously shell choice is very personal, but getting zsh running on &lt;a href="https://github.com/Microsoft/BashOnWindows"&gt;Bash for Windows&lt;/a&gt; was a priority for me.&lt;/p&gt;
 &lt;p&gt;Since Bash for Windows is just getting off the ground, &lt;a href="https://github.com/Microsoft/BashOnWindows/issues/91"&gt;this GitHub issue&lt;/a&gt; was tracking issues with zsh running.  Now that it's been closed, you can start running zsh on Windows.&lt;/p&gt;
 &lt;h2&gt;Installing zsh&lt;/h2&gt;
 &lt;p&gt;First, ensure your Windows Preview build is up to date.&lt;/p&gt;

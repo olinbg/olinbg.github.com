@@ -8,7 +8,7 @@
 		<!-- Enable responsiveness on mobile devices-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-		<title>Olin Gay - Blog - Authors</title>
+		<title>Olin Gay - Blog</title>
 
         <!-- Icons -->
         <link rel="apple-touch-icon" sizes="57x57" href="http://olinbg.com/favicon/apple-touch-icon-57x57.png">
@@ -81,10 +81,63 @@
 		</nav>
 	</div>
 </div>		<div class="content container">
-    <h1>Authors on Olin Gay - Blog</h1>
+<div class="post">
+	<h1 class="post-title">Uninstall and Reinstall Bash for Windows</h1>
+	<span class="post-date">Sun 31 July 2016</span>
+	<p>After the most recent update for Bash for Windows, a fairly major change went into effect: you're now logged in with a "user" level account rather than "root".  This has major benefits, and works much more like any other Linux/Unix install that you'd run locally.</p>
+<h2>Early Adopters Used <em>root</em>, not <em>user</em></h2>
+<p>Some of the original components that I had installed under root were now not manageable by the user account - notably the Python 2.7 and 3.4 installs.  Switching back and forth to root was possible, but onerous.  Here's the command to change the default login for the Linux Sub-system (LXSS) run in PowerShell:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun
+Performs administrative operations on the LX subsystem
 
-    <ul>        <li><a href="http://olinbg.com/author/olin-gay.html">Olin Gay</a> (8)</li>
-    </ul>
+...
+    /setdefaultuser - Configures the subsystem user that bash will be launched as. If the user does not exist it will be created.
+        Optional arguments:
+            username - Supply the username
+</pre></div>
+
+
+<p>This didn't seem sustainable long-term, and I preferred to start "fresh" with a user-mode Ubuntu image from the start.  So I did some digging on uninstalling and reinstalling the LXSS.</p>
+<h2>Uninstalling Bash for Windows</h2>
+<p>First some links:</p>
+<p>The initial GitHub issue: <a href="https://github.com/Microsoft/BashOnWindows/issues/4">Reinstalling clean image #4</a>
+The Lxss command reference: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/reference?f=255&amp;MSPPError=-2147217396">Command Reference</a>
+User support documentation within Bash for Windows: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/user_support">User Support</a></p>
+<p>After reviewing, the key commands to execute were first to uninstall completely (instead of just removing the user install), and then reinstalling.</p>
+<p>First, the uninstall:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun /uninstall /full
+This will uninstall Ubuntu on Windows.
+This will remove the Ubuntu environment as well as any modifications, new applications, and user data.
+Type &quot;y&quot; to continue: y
+Uninstalling...
+</pre></div>
+
+
+<p>You can confirm the directory has been removed by trying to open the path <code>%USERPROFILE%\AppData\Local\Lxss</code> - it should fail.</p>
+<h2>Re-installing Bash for Windows</h2>
+<p>The reinstall was very simple - simply run a similar Lxss command:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun /install
+-- Beta feature --
+This will install Ubuntu on Windows, distributed by Canonical
+and licensed under its terms available here:
+https://aka.ms/uowterms
+
+Type &quot;y&quot; to continue: y
+Downloading from the Windows Store... 100%
+Extracting filesystem, this will take a few minutes...
+Please create a default UNIX user account. The username does not need to match your Windows username.
+For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: &lt;user&gt;
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Installation successful!
+PS C:\Windows\System32\WindowsPowerShell\v1.0&gt;
+</pre></div>
+
+
+<p>In my case, most files were mounted in a C: folder, so I just need to reconfigure Python and other installs.  To see those steps, check out <a href="http://olinbg.com/posts/pelican-python-bash.html">this post</a>.</p>
+<span><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></span></div>
 		</div>
 	</body>
 </html>
