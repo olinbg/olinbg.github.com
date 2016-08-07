@@ -362,7 +362,7 @@ tbody tr:nth-child(odd) th {
   padding-left: 0;
   list-style: none;
 }
-.related-posts h3 {
+.related-posts h3, h5 {
   margin-top: 0;
 }
 .related-posts li small {
@@ -382,6 +382,16 @@ tbody tr:nth-child(odd) th {
   border: 1px solid #eee;
   font-size: .8rem;
   margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Series */
+
+.series-parts {
+  padding: .5rem .8rem;
+  margin-top: 0.2rem;
+  margin-left: 0.4rem;
+  margin-bottom: 0.2rem;
   font-weight: bold;
 }
 
