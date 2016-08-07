@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Sun, 07 Aug 2016 09:14:00 -0400</lastBuildDate><item><title>Python and Flask - Hello World</title><link>http://olinbg.com/posts/python-and-flask-hello-world.html</link><description>&lt;p&gt;&lt;em&gt;NOTE: I'm picking up Flask as a learning exercise, so this post is the first in a series.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Python has a number of capable web frameworks, with &lt;a href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt; being the larger / "batteries included" option of the, and &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; being the smaller / "assembly required" choice.  As with many projects in Python, I start with the &lt;a href="http://docs.python-guide.org/en/latest/scenarios/web/"&gt;Hitchhiker's Guide to Python&lt;/a&gt;.  Here are two quotes from the site on picking a web framework:&lt;/p&gt;
+<rss version="2.0"><channel><title>Olin Gay - Blog</title><link>http://olinbg.com/</link><description></description><lastBuildDate>Sun, 07 Aug 2016 09:14:00 -0400</lastBuildDate><item><title>Python and Flask - Hello World</title><link>http://olinbg.com/posts/python-and-flask-hello-world.html</link><description>&lt;p&gt;Python has a number of capable web frameworks, with &lt;a href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt; being the larger / "batteries included" option of the, and &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; being the smaller / "assembly required" choice.  As with many projects in Python, I start with the &lt;a href="http://docs.python-guide.org/en/latest/scenarios/web/"&gt;Hitchhiker's Guide to Python&lt;/a&gt;.  Here are two quotes from the site on picking a web framework:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The majority of new Python web applications today are built with Django.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -8,7 +7,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;Flask is default choice for any Python web application that isn’t a good fit for Django.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;So from a quick start and learning perspective, we'll go with Flask.  I'm also going to use VS Code for the project so screenshots and info will be from there.  You can download VS Code for free &lt;a href="https://code.visualstudio.com/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So from a quick start and learning perspective, I'm using Flask - purely a learning exercise.  I'm also going to use VS Code for the project so screenshots and info will be from there.  You can download VS Code for free &lt;a href="https://code.visualstudio.com/"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Getting up and running&lt;/h2&gt;
 &lt;p&gt;You'll want a python virtualenv before you start.  Since I'm running on an &lt;a href="https://docs.continuum.io/anaconda/"&gt;Anaconda&lt;/a&gt; installation on windows, I'm going to install flask with a conda command, rather than pip.  Both are below:&lt;/p&gt;
 &lt;p&gt;Conda:&lt;/p&gt;
