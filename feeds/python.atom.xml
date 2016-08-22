@@ -43,7 +43,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Basic Flask setup, done.  Next up, some tutorials.&lt;/p&gt;</summary></entry><entry><title>Helpful Pelican Settings</title><link href="http://olinbg.com/posts/helpful-pelican-settings.html" rel="alternate"></link><published>2016-05-12T22:52:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</id><summary type="html">&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
+&lt;p&gt;Basic Flask setup, done.&lt;/p&gt;</summary></entry><entry><title>Helpful Pelican Settings</title><link href="http://olinbg.com/posts/helpful-pelican-settings.html" rel="alternate"></link><published>2016-05-12T22:52:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</id><summary type="html">&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
 &lt;h3&gt;EXTRA_PATH_METADATA&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
 &lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
