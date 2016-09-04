@@ -81,40 +81,67 @@
 		</nav>
 	</div>
 </div>		<div class="content container">
-  <div class="page">
-    <h3 class="message">Posts in: Python</h3>
-  </div>
-	<div class="posts">
-			<div class="post">
-				<!--<h1 class="post-title" href="http://olinbg.com/posts/python-and-flask-hello-world.html#python-and-flask-hello-world">-->
-				<h1 class="post-title" href="http://olinbg.com/posts/python-and-flask-hello-world.html">
-					<a href="http://olinbg.com/posts/python-and-flask-hello-world.html#python-and-flask-hello-world">Python and Flask - Hello World</a>
-				</h1>
-				<span class="post-date">Sun 07 August 2016 in <a href="/category/python.html">Python</a></span>
-				<p>
-					<p>Python has a number of capable web frameworks, with <a href="https://www.djangoproject.com/">Django</a> being the larger / "batteries included" option of the, and <a href="http://flask.pocoo.org/">Flask</a> being the smaller / "assembly required" choice.  As with many projects in Python, I start with the <a href="http://docs.python-guide.org/en/latest/scenarios/web/">Hitchhiker's Guide to Python</a>.  Here are two quotes from the site on picking ...</p>
-				</p>
-				<a class="read-more" href="posts/python-and-flask-hello-world.html">Continue reading »</a>
-			</div>
-			<div class="post">
-				<!--<h1 class="post-title" href="http://olinbg.com/posts/helpful-pelican-settings.html#helpful-pelican-settings">-->
-				<h1 class="post-title" href="http://olinbg.com/posts/helpful-pelican-settings.html">
-					<a href="http://olinbg.com/posts/helpful-pelican-settings.html#helpful-pelican-settings">Helpful Pelican Settings</a>
-				</h1>
-				<span class="post-date">Thu 12 May 2016 in <a href="/category/python.html">Python</a></span>
-				<p>
-					<p>Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:</p>
-<h3>EXTRA_PATH_METADATA ...</h3>
-				</p>
-				<a class="read-more" href="posts/helpful-pelican-settings.html">Continue reading »</a>
-			</div>
-	</div>
-	<div class="pagination">
+<div class="post">
+	<h1 class="post-title">Uninstall and Reinstall Bash for Windows</h1>
+	<!-- Sun 31 July 2016 --> <span class="post-date"> In <a href="/category/bash-for-windows.html">Bash For Windows</a></span>
+	<p>After the most recent update for Bash for Windows, a fairly major change went into effect: you're now logged in with a "user" level account rather than "root".  This has major benefits, and works much more like any other Linux/Unix install that you'd run locally.</p>
+<h2>Early Adopters Used <em>root</em>, not <em>user</em></h2>
+<p>Some of the original components that I had installed under root were now not manageable by the user account - notably the Python 2.7 and 3.4 installs.  Switching back and forth to root was possible, but onerous.  Here's the command to change the default login for the Linux Sub-system (LXSS) run in PowerShell:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun
+Performs administrative operations on the LX subsystem
 
-		<span class="pagination-item older">Newer</span>
+...
+    /setdefaultuser - Configures the subsystem user that bash will be launched as. If the user does not exist it will be created.
+        Optional arguments:
+            username - Supply the username
+</pre></div>
 
-		<span class="pagination-item newer">Older</span>
-	</div>
+
+<p>This didn't seem sustainable long-term, and I preferred to start "fresh" with a user-mode Ubuntu image from the start.  So I did some digging on uninstalling and reinstalling the LXSS.</p>
+<h2>Uninstalling Bash for Windows</h2>
+<p>First some links:</p>
+<p>The initial GitHub issue: <a href="https://github.com/Microsoft/BashOnWindows/issues/4">Reinstalling clean image #4</a>
+The Lxss command reference: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/reference?f=255&amp;MSPPError=-2147217396">Command Reference</a>
+User support documentation within Bash for Windows: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/user_support">User Support</a></p>
+<p>After reviewing, the key commands to execute were first to uninstall completely (instead of just removing the user install), and then reinstalling.</p>
+<p>First, the uninstall:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun /uninstall /full
+This will uninstall Ubuntu on Windows.
+This will remove the Ubuntu environment as well as any modifications, new applications, and user data.
+Type &quot;y&quot; to continue: y
+Uninstalling...
+</pre></div>
+
+
+<p>You can confirm the directory has been removed by trying to open the path <code>%USERPROFILE%\AppData\Local\Lxss</code> - it should fail.</p>
+<h2>Re-installing Bash for Windows</h2>
+<p>The reinstall was very simple - simply run a similar Lxss command:</p>
+<div class="highlight"><pre><span></span>PS C:\Windows\System32\WindowsPowerShell\v1.0&gt; lxrun /install
+-- Beta feature --
+This will install Ubuntu on Windows, distributed by Canonical
+and licensed under its terms available here:
+https://aka.ms/uowterms
+
+Type &quot;y&quot; to continue: y
+Downloading from the Windows Store... 100%
+Extracting filesystem, this will take a few minutes...
+Please create a default UNIX user account. The username does not need to match your Windows username.
+For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: &lt;user&gt;
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Installation successful!
+PS C:\Windows\System32\WindowsPowerShell\v1.0&gt;
+</pre></div>
+
+
+<p>In my case, most files were mounted in a C: folder, so I just need to reconfigure Python and other installs.  To see those steps, check out <a href="http://olinbg.com/drafts/pelican-python-bash.html">this post</a>.</p>
+
+<p class="container message"><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></p>
+
+
+</div>
 		</div>
 	</body>
 </html>

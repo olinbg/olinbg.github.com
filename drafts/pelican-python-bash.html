@@ -82,73 +82,41 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Python and Flask - Hello World</h1>
-	<span class="post-date">Sun 07 August 2016 in <a href="/category/python.html">Python</a></span>
-	<span class="related">
-		<hr />
-		<h5>Part 1 of the "Python and Flask" series:</h5>
-		<small>
-		<ol class="series-parts">
-				<li>
-					
-							Python and Flask - Hello World
-				</li>
-		</ol>
-		</small>
-		<hr />
-	</span>
-	<p>Python has a number of capable web frameworks, with <a href="https://www.djangoproject.com/">Django</a> being the larger / "batteries included" option of the, and <a href="http://flask.pocoo.org/">Flask</a> being the smaller / "assembly required" choice.  As with many projects in Python, I start with the <a href="http://docs.python-guide.org/en/latest/scenarios/web/">Hitchhiker's Guide to Python</a>.  Here are two quotes from the site on picking a web framework:</p>
-<blockquote>
-<p>The majority of new Python web applications today are built with Django.</p>
-</blockquote>
-<p>and...</p>
-<blockquote>
-<p>Flask is default choice for any Python web application that isn’t a good fit for Django.</p>
-</blockquote>
-<p>So from a quick start and learning perspective, I'm using Flask - purely a learning exercise.  I'm also going to use VS Code for the project so screenshots and info will be from there.  You can download VS Code for free <a href="https://code.visualstudio.com/">here</a>.</p>
-<h2>Getting up and running</h2>
-<p>You'll want a python virtualenv before you start.  Since I'm running on an <a href="https://docs.continuum.io/anaconda/">Anaconda</a> installation on windows, I'm going to install flask with a conda command, rather than pip.  Both are below:</p>
-<p>Conda:</p>
-<div class="highlight"><pre><span></span>conda install flask
+	<h1 class="post-title">Python and Pelican on Bash for Windows</h1>
+	<!-- Fri 06 May 2016 --> <span class="post-date"> In <a href="/category/bash-for-windows.html">Bash For Windows</a></span>
+	<p>This site is up and running after setting up <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about">Bash for Ubuntu for Windows</a> and <a href="http://blog.getpelican.com/">Pelican</a>.  There are a few issues on Bash for Windows right now, but seeing Ubuntu's command-line capabilities on Windows 10 is eye-opening for long-time Windows users.</p>
+<h2>Installing Bash for Windows</h2>
+<p>You'll need <a href="https://insider.windows.com/">Windows Insider</a> enabled on Windows 10 64-bit, and also <a href="https://msdn.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development">developer features</a> set for Windows updates.</p>
+<p><a href="http://stackoverflow.com/questions/36352627/how-to-enable-bash-in-windows-10-developer-preview">This post on StackOverflow</a> was also helpful.</p>
+<p>You should now have the right Windows build (at least 14316):</p>
+<p><img alt="About" src="http://olinbg.com/images/2016-05-06/about.png" /></p>
+<p><img alt="Windows Build" src="http://olinbg.com/images/2016-05-06/build.png" /></p>
+<p>The Bash subsystem installation is straightforward.  I followed Microsoft's guide <a href="https://blogs.msdn.microsoft.com/commandline/2016/04/06/bash-on-ubuntu-on-windows-download-now-3/">here</a>, on the Windows Command Line blog.</p>
+<p>Fire up Bash, and you've got a blinking cursor.</p>
+<h2>Installing Python</h2>
+<p>The Python installation is far less involved, though you'll need to install directly (sudo apt-get) rather than using a virtual environment.  This is due to an issue around symlinks in Bash for Windows (details are <a href="https://github.com/Microsoft/BashOnWindows/issues/201">here</a>).  <strong>UPDATE</strong> - looks like the fix is in the latest build, give it a shot!</p>
+<p>The following command gets python and pip up and running.</p>
+<div class="highlight"><pre><span></span>sudo apt-get install python3-pip
 </pre></div>
 
 
-<p>Pip:</p>
-<div class="highlight"><pre><span></span>pip install flask
+<p>Similar for git:</p>
+<div class="highlight"><pre><span></span>sudo apt-get install git
 </pre></div>
 
 
-<p>Now that flask is installed, I loaded up a new folder for scripts in VS Code, and created a main.py with this block (straight from the Flask docs):</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-
-<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s2">&quot;Hello World!&quot;</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<p>The magic of Bash for windows - no Cygwin installation required here.</p>
+<h2>Installing Pelican</h2>
+<p>If you're interested in Pelican, the installation should also be easy with python:</p>
+<div class="highlight"><pre><span></span>sudo pip install pelican markdown six
 </pre></div>
 
 
-<p>Screenshot:</p>
-<p><img alt="main.py" src="https://photos.smugmug.com/photos/i-xt677KF/1/O/i-xt677KF.png" /></p>
-<p>Once you run the program, you can navigate to the page in your browser:</p>
-<p><img alt="Hello World" src="https://photos.smugmug.com/photos/i-TfsSVB3/0/O/i-TfsSVB3.png" /></p>
-<p>And you'll see this in the console:</p>
-<div class="highlight"><pre><span></span> * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-127.0.0.1 - - [07/Aug/2016 09:29:44] &quot;GET / HTTP/1.1&quot; 200 -
-</pre></div>
-
-
-<p>Basic Flask setup, done.  Next up, some tutorials.</p>
+<p>However, <em>this didn't work in Bash for Windows</em>, again due to issues around filesystem errors and links (<a href="http://stackoverflow.com/questions/36842969/python-3-pip-packages-install-on-ubuntu-on-windows-failing-with-errno-22">this StackOverflow</a> got closest to my issue).</p>
+<p>What ended up working is running each of the install commands individually, because the packaging step at the end is failing.  It's a major hack, but got me up and running for now.  If this isn't addressed in the next developer build, I'll file an issue for it.</p>
+<p>Once Pelican is up and running, I recommend the <a href="http://docs.getpelican.com/en/latest/quickstart.html">documentation quickstart</a> as a first step.</p>
 
 <p class="container message"><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></p>
-	<span class="pagination">
-		<span class="pagination-item older">First: Python and Flask - Hello World</span>
-
-		<span class="pagination-item newer">Last: Python and Flask - Hello World</span>
-	</span>
 
 
 </div>

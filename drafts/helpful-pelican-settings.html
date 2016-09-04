@@ -82,25 +82,44 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Python and Flask - Authentication</h1>
-	<span class="post-date">Sun 07 August 2016 in <a href="/category/python.html">Python</a></span>
-	<span class="related">
-		<hr />
-		<h5>Part <built-in method index of str object at 0x7f3fa4925540> of the "" series:</h5>
-		<small>
-		<ol class="series-parts">
-		</ol>
-		</small>
-		<hr />
-	</span>
-	<p>Test page</p>
+	<h1 class="post-title">Helpful Pelican Settings</h1>
+	<!-- Thu 12 May 2016 --> <span class="post-date"> In <a href="/category/python.html">Python</a></span>
+	<p>Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:</p>
+<h3>EXTRA_PATH_METADATA</h3>
+<div class="highlight"><pre><span></span><span class="c1"># Values used on this site</span>
+<span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;files/github/.nojekyll&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;.nojekyll&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;files/github/CNAME&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;CNAME&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;files/github/README.md&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;README.md&#39;</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This setting allows you to copy either paths or files directly into your output directory in Pelican.  This solves an important problem when using static hosting on sites like github pages: maintaining repository files as your site generates.</p>
+<p>In the example above, the <em>CNAME</em>, <em>README</em> and <em>.nojekyll</em> configuration files are copied into the top output directory.  I can then commit those on uplaod to gh-pages.</p>
+<h3>ARTICLE_URL and ARTICLE_SAVE_AS</h3>
+<div class="highlight"><pre><span></span><span class="c1"># Values used on this site</span>
+<span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="s1">&#39;posts/{slug}.html&#39;</span>
+<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="s1">&#39;posts/{slug}.html&#39;</span>
+</pre></div>
+
+
+<p>I wasn't as pleased with the output format of the default pelican setup, which dumps posts into the top-level directory.  The example formats the posts into a 'posts' directory using <em>ARTICLE_URL</em>, keeping the top-level cleaner.  You could also add YYYYMMDD or tags into the post path here, and <em>SAVE_AS</em> variant can change the location of the output file.</p>
+<h3>DELETE_OUTPUT_DIRECTORY and OUTPUT_RETENTION</h3>
+<div class="highlight"><pre><span></span><span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">OUTPUT_RETENTION</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.git&quot;</span><span class="p">,</span> <span class="s2">&quot;.gitignore&quot;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>To ensure a clean build before publishing, you can use <em>DELETE_OUTPUT_DIRECTORY</em>.  However, this was wiping out my .git directory each time.  I tracked down the <em>OUTPUT_RETENTION</em> setting, that ensures on delete the files / paths listed stay intact.</p>
+<h3>FEED_ALL_RSS</h3>
+<div class="highlight"><pre><span></span><span class="n">FEED_ALL_RSS</span> <span class="o">=</span> <span class="s1">&#39;feeds/all.rss.xml&#39;</span>
+</pre></div>
+
+
+<p>The Pelican install by default had only enabled an ATOM feed, but not RSS.  The <em>FEED_ALL_RSS</em> setting does what it says, generating the feed in the path provided.</p>
 
 <p class="container message"><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></p>
-	<span class="pagination">
-		<span class="pagination-item older">First: Python and Flask - Authentication</span>
-
-		<span class="pagination-item newer">Last: Python and Flask - Authentication</span>
-	</span>
 
 
 </div>

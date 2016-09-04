@@ -82,42 +82,19 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Helpful Pelican Settings</h1>
-	<span class="post-date">Thu 12 May 2016 in <a href="/category/python.html">Python</a></span>
-	<p>Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:</p>
-<h3>EXTRA_PATH_METADATA</h3>
-<div class="highlight"><pre><span></span><span class="c1"># Values used on this site</span>
-<span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;files/github/.nojekyll&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;.nojekyll&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;files/github/CNAME&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;CNAME&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;files/github/README.md&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;README.md&#39;</span><span class="p">},</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>This setting allows you to copy either paths or files directly into your output directory in Pelican.  This solves an important problem when using static hosting on sites like github pages: maintaining repository files as your site generates.</p>
-<p>In the example above, the <em>CNAME</em>, <em>README</em> and <em>.nojekyll</em> configuration files are copied into the top output directory.  I can then commit those on uplaod to gh-pages.</p>
-<h3>ARTICLE_URL and ARTICLE_SAVE_AS</h3>
-<div class="highlight"><pre><span></span><span class="c1"># Values used on this site</span>
-<span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="s1">&#39;posts/{slug}.html&#39;</span>
-<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="s1">&#39;posts/{slug}.html&#39;</span>
-</pre></div>
-
-
-<p>I wasn't as pleased with the output format of the default pelican setup, which dumps posts into the top-level directory.  The example formats the posts into a 'posts' directory using <em>ARTICLE_URL</em>, keeping the top-level cleaner.  You could also add YYYYMMDD or tags into the post path here, and <em>SAVE_AS</em> variant can change the location of the output file.</p>
-<h3>DELETE_OUTPUT_DIRECTORY and OUTPUT_RETENTION</h3>
-<div class="highlight"><pre><span></span><span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">OUTPUT_RETENTION</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.git&quot;</span><span class="p">,</span> <span class="s2">&quot;.gitignore&quot;</span><span class="p">]</span>
-</pre></div>
-
-
-<p>To ensure a clean build before publishing, you can use <em>DELETE_OUTPUT_DIRECTORY</em>.  However, this was wiping out my .git directory each time.  I tracked down the <em>OUTPUT_RETENTION</em> setting, that ensures on delete the files / paths listed stay intact.</p>
-<h3>FEED_ALL_RSS</h3>
-<div class="highlight"><pre><span></span><span class="n">FEED_ALL_RSS</span> <span class="o">=</span> <span class="s1">&#39;feeds/all.rss.xml&#39;</span>
-</pre></div>
-
-
-<p>The Pelican install by default had only enabled an ATOM feed, but not RSS.  The <em>FEED_ALL_RSS</em> setting does what it says, generating the feed in the path provided.</p>
+	<h1 class="post-title">Tech Links I'm Reading (9/4/2016)</h1>
+	<!-- Sun 04 September 2016 --> <span class="post-date"> In <a href="/category/technology.html">Technology</a></span>
+	<h3>Essential Electron - <a href="http://jlord.us/essential-electron/">Link</a></h3>
+<p>Electron is a library for building desktop apps with JavaScript and Node.js.  Think an .exe on windows or packaged app on Mac that you can download an install, but built with web tooling.  This is enabled through an embedded Chrome instance, and is something I'm experimenting with for a new project.</p>
+<p>If you're interested in existing Electon apps, I would check out <a href="https://atom.io/">Atom</a> and <a href="https://code.visualstudio.com/">VSCode</a> - both text editors.</p>
+<h3>Apache Spark @ Scale from Facebook - <a href="https://code.facebook.com/posts/1671373793181703/apache-spark-scale-a-60-tb-production-use-case/">Link</a></h3>
+<p>A great read on a couple of levels.  First, real-world usage on huge Spark datasets is something I want to learn more about.  Facebook clearly has the data set size covered.  Also, they contributed a number of changes back to Spark, and posted the specific bug fixes and details.  This means you can deep-dive on anything of interest.  Finally, it seems like a great model of solving an internal problem with the right open-source tools.</p>
+<h3>Why You Should Learn Python - <a href="https://iluxonchik.github.io/why-you-should-learn-python/">Link</a></h3>
+<p>I'm a big fan of Python, both in general as a scripting language, and the wealth of libraries that have built.  Even though I'm not necessarily the target audience for this article, there are some great points on why adding it to your toolbox is a great idea.  I think members of my team are still looking for reasons to experiment with it, so hopefully this can provide some encouragement.  I'll also be reading <a href="http://shop.oreilly.com/product/0636920032519.do">Fluent Python</a> soon as I've seen a couple recommendations for this book recently.</p>
+<h3>Angular 2 and Webpack Starter &amp; Class - <a href="https://github.com/AngularClass/angular2-webpack-starter/">Link</a></h3>
+<p>I've been looking for solid Angular 2 resources - given the popularity of Angular 1 and the efforts to clean up and simplify the framework in the second iteration, I want to adopt it for my web projects moving forward.  This link is actually two resources in one that I'll try out - an Angular 2 starter project with a free class you can join that walks through building an app from the ground up.</p>
+<h3>Arguments against JSON-driven development - <a href="http://okigiveup.net/arguments-against-json-driven-development/">Link</a></h3>
+<p>I read this as a cautionary tale, given that I'm trying to introduce more JSON-based serialization in my projects.  Although it can make communicating between processes easier, if left unchecked, the style can create the kind of spaghetti code that I'm explicity trying to avoid.  Also, a very quick read. </p>
 
 <p class="container message"><em>Want to discuss?  Reach out to me on <a href="mailto:olin@olinbg.com">email</a> or <a href="http://twitter.com/olinbg">Twitter</a>.</em></p>
 
