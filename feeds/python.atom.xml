@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Olin Gay - Blog</title><link href="http://olinbg.com/" rel="alternate"></link><link href="http://olinbg.com/feeds/python.atom.xml" rel="self"></link><id>http://olinbg.com/</id><updated>2016-08-07T09:14:00-04:00</updated><entry><title>Python and Flask - Hello World</title><link href="http://olinbg.com/posts/python-and-flask-hello-world.html" rel="alternate"></link><published>2016-08-07T09:14:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-08-07:posts/python-and-flask-hello-world.html</id><summary type="html">&lt;p&gt;Python has a number of capable web frameworks, with &lt;a href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt; being the larger / "batteries included" option of the, and &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; being the smaller / "assembly required" choice.  As with many projects in Python, I start with the &lt;a href="http://docs.python-guide.org/en/latest/scenarios/web/"&gt;Hitchhiker's Guide to Python&lt;/a&gt;.  Here are two quotes from the site on picking a web framework:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The majority of new Python web applications today are built with Django.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and...&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Flask is default choice for any Python web application that isn’t a good fit for Django.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So from a quick start and learning perspective, I'm using Flask - purely a learning exercise.  I'm also going to use VS Code for the project so screenshots and info will be from there.  You can download VS Code for free &lt;a href="https://code.visualstudio.com/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Getting up and running&lt;/h2&gt;
+&lt;p&gt;You'll want a python virtualenv before you start.  Since I'm running on an &lt;a href="https://docs.continuum.io/anaconda/"&gt;Anaconda&lt;/a&gt; installation on windows, I'm going to install flask with a conda command, rather than pip.  Both are below:&lt;/p&gt;
+&lt;p&gt;Conda:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda install flask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install flask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that flask is installed, I loaded up a new folder for scripts in VS Code, and created a main.py with this block (straight from the Flask docs):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Screenshot:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="main.py" src="https://photos.smugmug.com/photos/i-xt677KF/1/O/i-xt677KF.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Once you run the program, you can navigate to the page in your browser:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Hello World" src="https://photos.smugmug.com/photos/i-TfsSVB3/0/O/i-TfsSVB3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;And you'll see this in the console:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [07/Aug/2016 09:29:44] &amp;quot;GET / HTTP/1.1&amp;quot; 200 -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Basic Flask setup, done.&lt;/p&gt;</summary></entry><entry><title>Helpful Pelican Settings</title><link href="http://olinbg.com/posts/helpful-pelican-settings.html" rel="alternate"></link><published>2016-05-12T22:52:00-04:00</published><author><name>Olin Gay</name></author><id>tag:olinbg.com,2016-05-12:posts/helpful-pelican-settings.html</id><summary type="html">&lt;p&gt;Pelican (the static site generator that powers this site) has a number of useful settings that can change how sites are generated and displayed.  A few of these I didn't find right away - they might've been missing from pelican-quickstart or not obviously documented.  In no particular order:&lt;/p&gt;
+&lt;h3&gt;EXTRA_PATH_METADATA&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
+&lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/.nojekyll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.nojekyll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;files/github/README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;README.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This setting allows you to copy either paths or files directly into your output directory in Pelican.  This solves an important problem when using static hosting on sites like github pages: maintaining repository files as your site generates.&lt;/p&gt;
+&lt;p&gt;In the example above, the &lt;em&gt;CNAME&lt;/em&gt;, &lt;em&gt;README&lt;/em&gt; and &lt;em&gt;.nojekyll&lt;/em&gt; configuration files are copied into the top output directory.  I can then commit those on uplaod to gh-pages.&lt;/p&gt;
+&lt;h3&gt;ARTICLE_URL and ARTICLE_SAVE_AS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Values used on this site&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;posts/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;posts/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I wasn't as pleased with the output format of the default pelican setup, which dumps posts into the top-level directory.  The example formats the posts into a 'posts' directory using &lt;em&gt;ARTICLE_URL&lt;/em&gt;, keeping the top-level cleaner.  You could also add YYYYMMDD or tags into the post path here, and &lt;em&gt;SAVE_AS&lt;/em&gt; variant can change the location of the output file.&lt;/p&gt;
+&lt;h3&gt;DELETE_OUTPUT_DIRECTORY and OUTPUT_RETENTION&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;OUTPUT_RETENTION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.git&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.gitignore&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To ensure a clean build before publishing, you can use &lt;em&gt;DELETE_OUTPUT_DIRECTORY&lt;/em&gt;.  However, this was wiping out my .git directory each time.  I tracked down the &lt;em&gt;OUTPUT_RETENTION&lt;/em&gt; setting, that ensures on delete the files / paths listed stay intact.&lt;/p&gt;
+&lt;h3&gt;FEED_ALL_RSS&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;FEED_ALL_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The Pelican install by default had only enabled an ATOM feed, but not RSS.  The &lt;em&gt;FEED_ALL_RSS&lt;/em&gt; setting does what it says, generating the feed in the path provided.&lt;/p&gt;</summary></entry></feed>
